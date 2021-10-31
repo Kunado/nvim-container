@@ -3,9 +3,6 @@ FROM ubuntu:latest
 ARG NVIM_BIN_URL=https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
 
 run apt-get update -y && \
-    apt-get install -y software-properties-common && \
-    apt-add-repository -y ppa:neovim-ppa/stable && \
-    apt-get update -y && \
     apt-get install -y \
     curl \
     git \
@@ -13,6 +10,10 @@ run apt-get update -y && \
     language-pack-ja \
     bash \
     wget
+
+run curl -sL https://deb.nodesource.com/setup_17.x -o nodesource_setup.sh && \
+    bash nodesource_setup.sh && \
+    apt-get install nodejs
 
 run wget https://github.com/neovim/neovim/releases/download/v0.5.1/nvim-linux64.tar.gz && \
     tar xzvf nvim-linux64.tar.gz && \
